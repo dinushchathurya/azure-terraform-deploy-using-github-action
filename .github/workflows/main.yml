@@ -10,15 +10,11 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@master
-        
+
       - name: "Terraform Format"
-        uses: hashicorp/setup-terraform@v2
-        with:
-          tf_actions_version: 3.4.0
-          tf_actions_subcommand: "fmt"
-          tf_actions_working_dir: "./terraform"
-          tf_actions_comment: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        id: fmt
+        run: terraform fmt -check
+        continue-on-error: true
+
 
       
