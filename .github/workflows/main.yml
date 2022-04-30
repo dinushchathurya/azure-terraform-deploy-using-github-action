@@ -10,8 +10,9 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@master
+        
       - name: "Terraform Format"
-        uses: hashicorp/terraform-github-actions@master
+        uses: hashicorp/setup-terraform@v2
         with:
           tf_actions_version: 3.4.0
           tf_actions_subcommand: "fmt"
