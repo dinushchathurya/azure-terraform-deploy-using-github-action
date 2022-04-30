@@ -8,6 +8,7 @@ jobs:
     name: "Terraform"
     runs-on: ubuntu-latest
     steps:
+
       - name: "Checkout"
         uses: actions/checkout@master
 
@@ -15,6 +16,10 @@ jobs:
         id: fmt
         run: terraform fmt -check
         continue-on-error: true
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
 
 
       
