@@ -1,36 +1,23 @@
-name: 'terraform-Azure'
+name: "Terraform Deploy"
 on:
   push:
     branches:
-    - main
-  pull_request:
-
-env: 
-      ROOT_PATH: '${{github.workspace}}'
-      ARM_CLIENT_ID: ${{secrets.AZURE_CLIENT_ID}}
-      ARM_CLIENT_SECRET: ${{secrets.AZURE_CLIENT_SECRET}}
-      ARM_SUBSCRIPTION_ID: ${{secrets.AZURE_SUBSCRIPTION_ID}}
-      ARM_TENANT_ID: ${{secrets.AZURE_TENANT_ID}}
-
+      - master
 jobs:
-  terraform_plan:
-    name: 'terraform plan'
+  terraform:
+    name: "Terraform"
     runs-on: ubuntu-latest
-    environment: production
-
-    defaults:
-      run:
-        shell: bash
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-    - name: Setup terraform
-      uses: hashicorp/setup-terraform@v1
-      with:
-        cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
-    - name: terraform init
-      run: terraform init
-      working-directory: ${{ env.ROOT_PATH }}
-    - name: terraform Plan
-      run: terraform plan 
-      working-directory: ${{ env.ROOT_PATH }}
+      - name: "Checkout"
+        uses: actions/checkout@master
+      - name: "Terraform Format"
+        uses: hashicorp/terraform-github-actions@master
+        with:
+          tf_actions_version: 0.12.13
+          tf_actions_subcommand: "fmt"
+          tf_actions_working_dir: "./terraform"
+          tf_actions_comment: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      
