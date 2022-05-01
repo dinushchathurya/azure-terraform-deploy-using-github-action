@@ -1,7 +1,16 @@
 variable "resource_group_name" {
-    default = "TerraformGithubAction"
+    description = "Resource Group Name"
+    default     = "GitHubAction"
+    type        = string
 }
 
 variable "location" {
-    default = "West Europe"
+    description = "Azure location"
+    default     = "East US"
+    type        = string
+}
+
+variable "storage_name" {
+    description = "Azure Storage Account"
+    type        = string
 }
