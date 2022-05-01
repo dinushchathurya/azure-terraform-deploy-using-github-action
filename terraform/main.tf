@@ -6,16 +6,14 @@ terraform {
     key                  = "dev.terraform.tfstate"
   }
 }
-
 module "RG" {
   source   = "./modules/RG" #A
-  resource_group_name   = var.resource_group_name     #B
+  rgname   = var.rgname     #B
   location = var.location
 }
-
 module "SA" {
   source   = "./modules/StorageAccount"
-  storage_name    = var.storage_name
-  resource_group_name   = var.resource_group_name
+  sname    = var.sname
+  rgname   = var.rgname
   location = var.location
 }

@@ -1,16 +1,14 @@
-variable "resource_group_name" {
-    description = "Resource Group Name"
-    default     = "GitHubAction"
-    type        = string
+variable "rgname" {
+  description = "Resource Group Name"
+  default     = "github-action1"
+  type        = string
 }
-
 variable "location" {
-    description = "Azure location"
-    default     = "East US"
-    type        = string
+  description = "Azure location"
+  default     = "East US"
+  type        = string
 }
-
-variable "storage_name" {
-    description = "Azure Storage Account"
-    type        = string
+variable "sname" {
+  description = "Azure Storage Account"
+  type        = string
 }
